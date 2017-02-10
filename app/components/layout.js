@@ -10,7 +10,7 @@ class Layout extends React.Component {
   addContact = (e) => {
     e.preventDefault()
 
-    const contacts = this.props.contacts.all.slice()
+    const contacts = this.props.contacts.all
     const newId = contacts[contacts.length - 1].id + 1
     this.props.contacts.add({
       id: newId,
@@ -46,7 +46,7 @@ class Layout extends React.Component {
       <div id='Layout'>
         {this.newContact()}
         <div className='pure-g'>
-          {this.props.contacts.all.slice().map(info =>
+          {this.props.contacts.all.map(info =>
             <Contact key={info.id} {...info} />
           )}
         </div>
