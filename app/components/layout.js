@@ -1,32 +1,29 @@
 import React from 'react';
 import Contact from './Contact';
-import data from './data';
-
+import { observer } from 'mobx-react';
 import './Layout.css';
 
+@observer(['contacts'])
+
 class Layout extends React.Component {
-  componentWillMount() {
-    this.setState({
-      contacts: data,
-    });
-  }
 
   addContact = (e) => {
     e.preventDefault()
 
-    const contacts = this.state.contacts
+    const contacts = this.props.contacts.all.slice()
     const newId = contacts[contacts.length - 1].id + 1
-    this.setState({
-      contacts: contacts.concat({ id: newId,
-                                  name: this.refs.name.value,
-                                  email: this.refs.email.value })
+    this.props.contacts.add({
+      id: newId,
+      name: this.refs.name.value,
+      email: this.refs.email.value,
     });
 
     this.refs.name.value = null;
     this.refs.email.value = null;
 
+    console.log(contacts);
     console.log('clicked!');
-  }
+  };
 
   newContact = () =>
     <div className='pure-g'>
@@ -49,7 +46,7 @@ class Layout extends React.Component {
       <div id='Layout'>
         {this.newContact()}
         <div className='pure-g'>
-          {this.state.contacts.map(info =>
+          {this.props.contacts.all.slice().map(info =>
             <Contact key={info.id} {...info} />
           )}
         </div>
