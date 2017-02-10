@@ -6,6 +6,10 @@ import './Layout.css';
 @inject(['contacts']) @observer
 
 class Layout extends React.Component {
+  componentWillMount() {
+    this.props.contacts.fetchAll();
+  }
+
 
   addContact = (e) => {
     e.preventDefault()
@@ -14,15 +18,12 @@ class Layout extends React.Component {
     const newId = contacts[contacts.length - 1].id + 1
     this.props.contacts.add({
       id: newId,
-      name: this.refs.name.value,
+      first_name: this.refs.first_name.value,
       email: this.refs.email.value,
     });
 
-    this.refs.name.value = null;
+    this.refs.first_name.value = null;
     this.refs.email.value = null;
-
-    console.log(contacts);
-    console.log('clicked!');
   };
 
   newContact = () =>
@@ -32,7 +33,7 @@ class Layout extends React.Component {
           <fieldset>
             <legend>New contact</legend>
             <input ref='email' type='email' placeholder='example@example.com'></input>
-            <input ref='name' type='text' placeholder='Name'></input>
+            <input ref='first_name' type='text' placeholder='Name'></input>
             <button type='submit' className='pure-button pure-button-primary'>
               Add contact
             </button>
