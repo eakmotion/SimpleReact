@@ -1,9 +1,9 @@
 import React from 'react';
 import Contact from './Contact';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import './Layout.css';
 
-@observer(['contacts'])
+@inject(['contacts']) @observer
 
 class Layout extends React.Component {
 
