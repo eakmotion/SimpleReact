@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Contact = props =>
-  <div className='pure-u-1-3'>
-    <h2>{props.first_name}</h2>
-    <p>{props.email}</p>
-  </div>;
+class Contact extends React.Component {
+  render() {
+    return (
+      <div className='pure-u-1-3'>
+        <h2>{this.props.first_name}</h2>
+        <p>{this.props.email}</p>
+      </div>
+    )
+  }
+}
 
 export default Contact;
