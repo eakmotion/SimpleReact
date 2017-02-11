@@ -14,10 +14,7 @@ class Layout extends React.Component {
   addContact = (e) => {
     e.preventDefault()
 
-    const contacts = this.props.contacts.all
-    const newId = contacts[contacts.length - 1].id + 1
     this.props.contacts.add({
-      id: newId,
       first_name: this.refs.first_name.value,
       email: this.refs.email.value,
     });
