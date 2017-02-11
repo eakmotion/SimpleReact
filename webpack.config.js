@@ -6,6 +6,11 @@ module.exports = {
     path: __dirname,
     filename: '[name].js',
   },
+  devServer: {
+    hot: true,
+    inline: true,
+    historyApiFallback: true,
+  },
   module: {
     loaders: [
       {
