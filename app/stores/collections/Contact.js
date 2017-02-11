@@ -31,6 +31,25 @@ class Contacts {
       this.fetchAll();
     }
   }
+
+  @action async remove(contactId) {
+    this.isLoading = true;
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json');
+    const options = {
+      method: 'DELETE',
+      headers,
+    };
+
+    const request = new Request(`http://localhost:3000/v1/contacts/${contactId}`, options);
+    const response = await fetch(request);
+    const status = response.status;
+
+    if (status === 200) {
+      this.isLoading = false;
+      this.fetchAll();
+    }
+  }
 }
 
 export default new Contacts();
